@@ -63,12 +63,14 @@ export const Amount = styled.Text<TypeProps>`
   color: ${({ theme, type }) =>
     type === 'total' ? theme.colors.shape : theme.colors.title};
   font-size: ${RFValue(32)}px;
+
   margin-top: 38px;
 `;
 
 export const LastTransaction = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(12)}px;
+
   color: ${({ theme, type }) =>
     type === 'total' ? theme.colors.shape : theme.colors.text};
-  font-size: ${RFValue(12)}px;
 `;
