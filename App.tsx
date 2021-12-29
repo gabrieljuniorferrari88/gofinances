@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-//teste
+
 import {
   useFonts,
   Poppins_400Regular,
