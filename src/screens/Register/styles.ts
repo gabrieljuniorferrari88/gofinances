@@ -15,7 +15,6 @@ export const Header = styled.View`
   align-items: center;
   justify-content: flex-end;
   padding-bottom: 19px;
-  /* tete */
 `;
 
 export const Title = styled.Text`
