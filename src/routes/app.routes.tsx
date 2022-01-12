@@ -4,12 +4,17 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const { Navigator, Screen } = createBottomTabNavigator();
-
 import { Dashboard } from '../screens/Dashboard';
 import { Register } from '../screens/Register';
 
+export type AppRoutesParamList = {
+  Listagem: undefined; // <- undefined = rota não requer parâmetros.
+  Cadastrar: undefined;
+  Resumo: undefined;
+};
+
 export function AppRoutes() {
+  const { Navigator, Screen } = createBottomTabNavigator<AppRoutesParamList>();
   const theme = useTheme();
   return (
     <Navigator
