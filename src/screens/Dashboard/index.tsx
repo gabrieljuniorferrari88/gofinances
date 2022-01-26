@@ -53,13 +53,13 @@ export function Dashboard() {
   const theme = useTheme();
 
   function getLastTransactionDate(
-    colletion: DataListProps[],
+    collection: DataListProps[],
     type: 'positive' | 'negative'
   ) {
     const lastTransaction = new Date(
       Math.max.apply(
         Math,
-        colletion
+        collection
           .filter((transaction) => transaction.type === type)
           .map((transaction) => new Date(transaction.date).getTime())
       )
@@ -79,7 +79,7 @@ export function Dashboard() {
     let entriesTotal = 0;
     let expensiveTotal = 0;
 
-    // ! Inicia a atualizao das transações
+    // ! Inicia a atualização das transações
     const transactionsFormatted: DataListProps[] = transactions.map(
       (item: DataListProps) => {
         if (item.type === 'positive') {
