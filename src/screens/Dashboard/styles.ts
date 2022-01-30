@@ -19,9 +19,7 @@ export const Container = styled.View`
 export const Header = styled.View`
   width: 100%;
   height: ${RFPercentage(40)}px;
-
   background-color: ${({ theme }) => theme.colors.primary};
-
   justify-content: center;
   align-items: flex-start;
   flex-direction: row;
@@ -29,10 +27,8 @@ export const Header = styled.View`
 
 export const UserWrapper = styled.View`
   width: 100%;
-
   padding: 0 24px;
   margin-top: ${getStatusBarHeight() + RFValue(1)}px;
-
   /* background-color: red; */
   flex-direction: row;
   align-items: center;
@@ -47,7 +43,6 @@ export const UserInfo = styled.View`
 export const Photo = styled.Image`
   width: ${RFValue(48)}px;
   height: ${RFValue(48)}px;
-
   border-radius: 15px;
 `;
 
@@ -57,14 +52,12 @@ export const User = styled.View`
 
 export const UserGreeting = styled.Text`
   color: ${({ theme }) => theme.colors.shape};
-
   font-size: ${RFValue(18)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
 export const UserName = styled.Text`
   color: ${({ theme }) => theme.colors.shape};
-
   font-size: ${RFValue(18)}px;
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
@@ -82,7 +75,6 @@ export const HighLightCards = styled.ScrollView.attrs({
   contentContainerStyle: { paddingHorizontal: 24 },
 })`
   width: 100%;
-
   position: absolute;
   margin-top: ${RFPercentage(18)}px;
 `;
@@ -97,7 +89,6 @@ export const Transactions = styled.View`
 export const Title = styled.Text`
   font-size: ${RFValue(18)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
-
   margin-bottom: 16px;
 `;
 
@@ -115,3 +106,14 @@ export const LoadContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+export const SubHeader = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+export const TrashButton = styled(BorderlessButton)``
+export const TrashIcon = styled(Feather)`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFValue(20)}px;
+`

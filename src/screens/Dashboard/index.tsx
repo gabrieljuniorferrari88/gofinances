@@ -28,6 +28,9 @@ import {
   TransactionList,
   LogoutButton,
   LoadContainer,
+	SubHeader,
+	TrashButton,
+  TrashIcon
 } from './styles';
 
 export interface DataListProps extends TransactionCardProps {
@@ -58,11 +61,16 @@ export function Dashboard() {
     collection: DataListProps[],
     type: 'positive' | 'negative'
   ) {
+
+		const collectionFiltered = collection.filter((transaction) => transaction.type === type);
+
+		if(collectionFiltered.length === 0){
+			return 0
+		}
+
     const lastTransaction = new Date(
       Math.max.apply(
-        Math,
-        collection
-          .filter((transaction) => transaction.type === type)
+        Math, collectionFiltered        
           .map((transaction) => new Date(transaction.date).getTime())
       )
     );
@@ -74,7 +82,7 @@ export function Dashboard() {
   }
 
   async function loadTransactions() {
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
 
@@ -125,9 +133,11 @@ export function Dashboard() {
       'negative'
     );
 
-    const totalInterval = `01 á ${lastTransactionExpensives}`;
+    const totalInterval = lastTransactionExpensives === 0 
+		? 'Não há transações'
+		: `01 á ${lastTransactionExpensives}`;
 
-    const total = entriesTotal - expensiveTotal;
+    const total = entriesTotal - expensiveTotal;		
 
     setHighLightData({
       entries: {
@@ -135,7 +145,9 @@ export function Dashboard() {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+        lastTransaction: lastTransactionEntries === 0
+				? 'Não há transações'
+				: `Última entrada dia ${lastTransactionEntries}`,
       },
 
       expensives: {
@@ -143,7 +155,9 @@ export function Dashboard() {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última saída dia ${lastTransactionExpensives}`,
+        lastTransaction: lastTransactionExpensives === 0 
+				? 'Não há transações'
+				: `Última saída dia ${lastTransactionExpensives}`,
       },
       total: {
         amount: total.toLocaleString('pt-BR', {
@@ -219,7 +233,15 @@ export function Dashboard() {
           </HighLightCards>
 
           <Transactions>
-            <Title>Listagem</Title>
+
+					<SubHeader>
+              <Title>Listagem</Title>
+              {transactions.length > 0 && (
+                <TrashButton onPress={()=>{}}>
+                  <TrashIcon name={'trash'} />
+                </TrashButton>
+              )}
+            </SubHeader>
 
             <TransactionList
               data={transactions}
@@ -232,4 +254,3 @@ export function Dashboard() {
     </Container>
   );
 }
-
