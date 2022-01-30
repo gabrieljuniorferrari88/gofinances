@@ -206,7 +206,7 @@ export function Dashboard() {
             />
             <HighLightCard
               type="down"
-              title="Saidas"
+              title="Saídas"
               amount={highLightData.expensives.amount}
               lastTransaction={highLightData.expensives.lastTransaction}
             />
@@ -232,3 +232,4 @@ export function Dashboard() {
     </Container>
   );
 }
+
