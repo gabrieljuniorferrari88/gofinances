@@ -88,7 +88,6 @@ function AuthProvider({children}: AuthProviderProps){
 
     } catch (error) {
       throw new Error(error);
-      
     }
   }
   
@@ -136,12 +135,11 @@ function AuthProvider({children}: AuthProviderProps){
 		}
 		loadUserStorageDate();
 	},[]);
-
  
   return (
     <AuthContext.Provider value={{ 
-      user, 
-      signInWithGoogle ,
+      user,
+      signInWithGoogle,
       signInWithApple,
 			signOut,
 			userStorageIsLoading

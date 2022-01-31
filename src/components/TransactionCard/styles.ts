@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 interface TransactionProps {
   type: 'positive' | 'negative';
@@ -56,3 +57,16 @@ export const Date = styled.Text`
   font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.colors.text};
 `;
+
+// ** teste
+
+export const SubHeader = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+export const TrashButton = styled(BorderlessButton)``
+export const TrashIcon = styled(Feather)`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFValue(20)}px;
+`

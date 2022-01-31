@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -45,6 +45,15 @@ interface HighLightData {
   entries: HighLightProps;
   expensives: HighLightProps;
   total: HighLightProps;
+}
+
+interface TransactionData {
+	id: string;
+  type: 'positive' | 'negative';
+  name: string;
+  amount: string;
+  category: string;
+  date: string;
 }
 
 export function Dashboard() {
@@ -171,7 +180,63 @@ export function Dashboard() {
     setIsLoading(false);
   }
 
+	async function deleteTransaction(id: string){		
+		const dataKey = `@gofinances:transactions_user:${user.id}`;
+    const response = await AsyncStorage.getItem(dataKey);
+    const transactions: DataListProps[]= response ? JSON.parse(response) : [];
 
+		const newTransaction = transactions.filter((transaction) => transaction.id !== id);
+		await AsyncStorage.setItem(dataKey, JSON.stringify(newTransaction));
+		loadTransactions().then((r) => {})
+	}
+
+	async function handleDeleteTransaction(id: string, name: string, amount: string) {
+		return Alert.alert(
+      'Excluir Transação',
+      `Tem certeza que você deseja excluir ${name} no valor de ${amount}?`,
+      [
+        {
+          style: 'cancel',
+          text: 'Não'
+        },
+        {
+          style: 'destructive',
+          text: 'Sim',
+          onPress: () => {
+            deleteTransaction(id)
+						loadTransactions().then((r) => {})
+          }
+        }
+      ],
+			{
+				cancelable: true,
+			}
+    )
+	}
+
+	async function handleClearTransactions() {
+    return Alert.alert(
+      'Limpar lista',
+      'Tem certeza que você deseja limpar todas as transações da lista?',
+      [
+        {
+          style: 'cancel',
+          text: 'Não'
+        },
+        {
+          style: 'destructive',
+          text: 'Sim',
+          onPress: () => {
+            AsyncStorage.removeItem(`@gofinances:transactions_user:${user.id}`)
+            loadTransactions().then((r) => {})
+          }
+        }
+      ],
+			{
+				cancelable: true,
+			}
+    )
+  }
 
   useEffect(() => {
     loadTransactions();
@@ -237,8 +302,8 @@ export function Dashboard() {
 					<SubHeader>
               <Title>Listagem</Title>
               {transactions.length > 0 && (
-                <TrashButton onPress={()=>{}}>
-                  <TrashIcon name={'trash'} />
+                <TrashButton onPress={handleClearTransactions}>
+                  <TrashIcon name={'trash-2'} />
                 </TrashButton>
               )}
             </SubHeader>
@@ -246,7 +311,7 @@ export function Dashboard() {
             <TransactionList
               data={transactions}
               keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <TransactionCard data={item} />}
+              renderItem={({ item }) => <TransactionCard data={item} teste={handleDeleteTransaction}/>}
             />
           </Transactions>
         </>
