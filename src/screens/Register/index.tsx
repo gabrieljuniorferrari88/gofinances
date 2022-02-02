@@ -111,6 +111,19 @@ export function Register() {
         name: 'Categoria',
       });
 
+			Alert.alert(
+				'Salvo com Sucesso',
+				' ',
+				[
+					{
+						style: 'default',
+						text: 'OK',
+					}
+				],
+				{
+					cancelable: true,
+				}
+			)
       navigation.navigate('Listagem');
     } catch (error) {
       console.log(error);
