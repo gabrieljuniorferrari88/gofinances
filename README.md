@@ -1,3 +1,6 @@
+
+<!-- <h1 align="center">Gofinances</h1> -->
+<div align="center"><img src="./src/assets/logo.svg" width="250" /></div>
 <div align="center" id="top"> 
   <img src="./.github/app.gif" alt="Gofinances" />
 
@@ -5,8 +8,6 @@
 
   <!-- <a href="https://gofinances.netlify.com">Demo</a> -->
 </div>
-<!-- <h1 align="center">Gofinances</h1> -->
-<div align="center"><img src="./src/assets/logo.svg" width="250" /></div>
 
 <br />
 
