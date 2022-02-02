@@ -122,11 +122,12 @@ SCOPE=
 
 ## :sunrise: Conquistas ##
 
-:heavy_check_mark: Conhecimento do AsyncStorage;\
-:heavy_check_mark: Criação de components e suas propriedades;\
-:heavy_check_mark: Compreensão do Expo e seu ambiente;\
-:heavy_check_mark: Validação de formulários com a incrível ferramenta YUP;\
-:heavy_check_mark: Hooks como usar, como criar e sua grande importância;\
+:heavy_check_mark: Consegui criar duas funcionalidades amais que não estava proposto no ignite;🚀\
+:heavy_check_mark: Conhecimento do AsyncStorage;🚀\
+:heavy_check_mark: Criação de components e suas propriedades;🚀\
+:heavy_check_mark: Compreensão do Expo e seu ambiente;🚀\
+:heavy_check_mark: Validação de formulários com a incrível ferramenta YUP;🚀\
+:heavy_check_mark: Hooks como usar, como criar e sua grande importância;🚀\
 
 ## :memo: Licença ##
 
